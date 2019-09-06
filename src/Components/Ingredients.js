@@ -19,17 +19,19 @@ const ingredients = [
   }
 ]
 
-const Ingredients= () =>{
+const Ingredients= (props) =>{
   return (
     <div>
       {
-        ingredients.map( ingr => 
-          <div>
-            {ingr.name} 
-            <img src={(require(`${ingr.img_url}`))} />
-          </div> 
+        ingredients.map( ingr =>           
+          <div style={{display: "inline"}} onClick={ ()=>{props.buildBurger(ingr)} }>
+            {ingr.name}
+            <img src={require(`../images/${ingr.name}.png`)}/>
+          </div>
         )
       }
+      <img src={require('../images/top_bun.png')} onClick={()=>props.burgerSubmit()} />
+
     </div>
   )
 }
