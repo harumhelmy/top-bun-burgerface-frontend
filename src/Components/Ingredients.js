@@ -19,20 +19,28 @@ const ingredients = [
   }
 ]
 
+let styling = {
+    width: '100px',
+    height: '100px',
+    padding: '50px'
+}
+
 const Ingredients= (props) =>{
+
   return (
     <div>
       {
         ingredients.map( ingr =>           
-          <div style={{display: "inline"}} onClick={ ()=>{props.buildBurger(ingr)} }>
+          <div key ={ingr.name}  style={{display: "inline"}}onClick={ ()=>{props.buildBurger(ingr)} } alt=''>
             {ingr.name}
-            <img src={require(`../images/${ingr.name}.png`)}/>
+            <img style={styling} src={require(`../images/${ingr.name}.png`)}/>
           </div>
         )
       }
       <img src={require('../images/top_bun.png')} onClick={()=>props.burgerSubmit()} />
 
     </div>
+
   )
 }
 

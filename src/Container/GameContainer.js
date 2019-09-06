@@ -15,14 +15,17 @@ export default class GameContainer extends React.Component {
       super();
       this.state = {
           currentBurger: [],
+          currentBurger2: [],
           currentOrderNumbers: [],
           currentScore: 0
       };
   }
 
   buildBurger = (ingr) => {
+
     this.setState({
-      currentBurger: [...this.state.currentBurger, ingr]
+      currentBurger: [...this.state.currentBurger, ingr],
+      currentBurger2: [...this.state.currentBurger, ingr]
     })
   }
 
@@ -40,9 +43,15 @@ export default class GameContainer extends React.Component {
      results.length > 0 ? console.log('bye') : this.setState({ currentScore: this.state.currentScore + 1 })
   
      this.setState({
-       currentBurger: []
+       currentBurger: [],
+       currentBurger2: []
      })
      
+  }
+
+  reverseBurger = () =>{
+    let completedBurger = this.state.currentBurger2
+    return completedBurger
   }
         
     // console.log('did the burger')
@@ -56,7 +65,8 @@ export default class GameContainer extends React.Component {
         <Ingredients buildBurger={this.buildBurger}
           burgerSubmit={this.burgerSubmit}
         />
-        <BurgerBuildContainer orders={orders} />
+        <BurgerBuildContainer reverseBurger={this.reverseBurger()} orders={orders} />
+
       </div>
     );
   }
