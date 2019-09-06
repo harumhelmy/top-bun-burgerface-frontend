@@ -1,18 +1,21 @@
-import React from 'react'
+import React from "react";
 
-const Login = (props) => {
+const Login = props => {
   return (
-    <div>
-      <form onSubmit={props.onLogin}> 
+     <div>
+       { !props.currentPlayer ?
+      <form onSubmit={props.onLogin}>
         <label>Login:</label>
-        <input type="text" 
+        <input
+          type="text"
           value={props.loginName}
           onChange={props.getLoginName}
         />
         <button>Submit</button>
       </form>
-    </div>
-  )
-}
+     : null}
+     </div>
+    )
+};
 
-export default Login
+export default Login;

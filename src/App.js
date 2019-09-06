@@ -42,6 +42,13 @@ class App extends React.Component {
       })
   }
 
+  logout = () =>{
+    this.setState({
+      currentPlayer: '',
+      loginName: ''
+    })
+  }
+
   render(){
     return (
       <div className="App">
@@ -49,13 +56,14 @@ class App extends React.Component {
             <Route exact path='/' render={ () => <Login 
               loginName={this.state.loginName}
               getLoginName={this.getLoginName}
-              onLogin={this.onLogin} />
+              onLogin={this.onLogin}
+              currentPlayer={this.state.currentPlayer} />
               }
             />
         </Router>
 
         {
-          this.state.currentPlayer ? <Welcome />
+          this.state.currentPlayer ? <Welcome logout={this.logout}/>
           : 
           null
         }
