@@ -4,7 +4,7 @@ const Welcome = (props) => {
   return(
     <div>
       <h1>Welcome to Top Bun BurgerFace</h1>
-      <button onClick={ () => console.log('start gaaaame')}>Start Game</button>
+      <button onClick={ () => props.startGame()}>Start Game</button>
       <button onClick={props.logout}>Logout</button>
     </div>
   )

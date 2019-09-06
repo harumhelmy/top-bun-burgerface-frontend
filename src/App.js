@@ -3,7 +3,7 @@ import Login from './Login'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Welcome from './Welcome'
-import GameContainer from '../container/GameContainer'
+import GameContainer from './Container/GameContainer'
 
 const playerUrl = 'http://localhost:3000/players'
 
@@ -14,7 +14,8 @@ class App extends React.Component {
     this.state = {
       loginName: '',
       allPlayers: [],
-      currentPlayer: ''
+      currentPlayer: '',
+      gameStarted: false
     }
   }
 
@@ -32,6 +33,12 @@ class App extends React.Component {
     }))
   }
 
+  startGame = () => {
+    this.setState({
+      gameStarted: true
+    })
+  }
+
   onLogin = (event) => {
     event.preventDefault()
     const player = this.state.allPlayers.filter( player => 
@@ -42,6 +49,8 @@ class App extends React.Component {
         currentPlayer: player[0]
       })
   }
+
+
 
   logout = () =>{
     this.setState({
@@ -62,9 +71,10 @@ class App extends React.Component {
               }
             />
         </Router>
-
+        {this.state.gameStarted ? <GameContainer /> : null}
+       
         {
-          this.state.currentPlayer ? <Welcome logout={this.logout}/>
+          this.state.currentPlayer && !this.state.gameStarted ? <Welcome logout={this.logout} startGame={this.startGame}/>
           : 
           null
         }
