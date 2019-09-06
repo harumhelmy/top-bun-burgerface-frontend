@@ -3,6 +3,7 @@ import Login from './Login'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Welcome from './Welcome'
+import GameContainer from '../container/GameContainer'
 
 const playerUrl = 'http://localhost:3000/players'
 
