@@ -1,6 +1,8 @@
 import React from "react";
 import BurgerBuildContainer from "./BurgerBuildContainer";
 import Ingredients from "../Components/Ingredients.js";
+// import Countdown from 'react-countdown-now'
+import Timer from "../Components/Timer"
 
 const orders = {
   1: ["patty", "tomato", "lettuce", "pickles"],
@@ -20,7 +22,7 @@ export default class GameContainer extends React.Component {
       clickCounter: 0
     };
   }
-
+  
   buildBurger = ingr => {
     console.log("hello");
 
@@ -75,6 +77,9 @@ export default class GameContainer extends React.Component {
           burger={this.state.currentBurger2}
           orders={orders}
         />
+
+        <Timer />
+
       </div>
     );
   }

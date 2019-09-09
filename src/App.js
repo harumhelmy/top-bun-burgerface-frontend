@@ -44,13 +44,14 @@ class App extends React.Component {
     const player = this.state.allPlayers.filter( player => 
       player.name.toLowerCase() === this.state.loginName.toLowerCase())
 
-      player.length === 0 ? alert('no thanks') :
+      player.length === 0 
+      ? 
+      console.log(player)
+      :
       this.setState({
         currentPlayer: player[0]
       })
   }
-
-
 
   logout = () =>{
     this.setState({
