@@ -73,12 +73,23 @@ export default class GameContainer extends React.Component {
           buildBurger={this.buildBurger}
           burgerSubmit={this.burgerSubmit}
         />
+          <h4>Current order to be fulfilled:  </h4>
+          
+          <ul>
+          {
+            orders[this.state.currentOrderNumber].map( ingr => <p>{ingr}</p> )
+          }
+          </ul>
+
         <BurgerBuildContainer
           burger={this.state.currentBurger2}
           orders={orders}
         />
 
         <Timer />
+
+         <h3>Current score: {this.state.currentScore}</h3>
+
 
       </div>
     );
