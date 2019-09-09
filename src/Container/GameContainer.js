@@ -73,6 +73,17 @@ export default class GameContainer extends React.Component {
     })
   }
 
+  removeIngredient = () => {
+    this.state.currentBurger.pop()
+    this.state.currentBurger2.shift()
+
+    this.setState({
+      currentBurger: this.state.currentBurger,
+      currentBurger2: this.state.currentBurger2.reverse(),
+      clickCounter: this.state.clickCounter - 1 
+    })
+  }
+
   render() {
     return (
       <div>
@@ -96,6 +107,7 @@ export default class GameContainer extends React.Component {
             <BurgerBuildContainer
               burger={this.state.currentBurger2}
               orders={orders}
+              removeIngredient={this.removeIngredient}
             />
 
             <Timer endGame={this.endGame} />
