@@ -26,7 +26,6 @@ export default class GameContainer extends React.Component {
   }
   
   buildBurger = ingr => {
-    console.log("hello");
 
     if (this.state.clickCounter < 5) {
        this.setState({
@@ -45,8 +44,6 @@ export default class GameContainer extends React.Component {
   };
 
   burgerSubmit = () => {
-    console.log("clicked the bun");
-
     let results = [];
 
     for (let i = 0; i < this.state.currentBurger.length; i++) {
