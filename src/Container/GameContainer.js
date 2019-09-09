@@ -4,16 +4,9 @@ import Ingredients from "../Components/Ingredients.js";
 // import Countdown from 'react-countdown-now'
 import Timer from "../Components/Timer"
 import EndGame from "../Components/EndGame"
-// import Orders from '../Orders'
-
-// const orders = {
-//   1: ["patty", "tomato", "lettuce", "pickles"],
-//   2: ["lettuce", "tomato", "patty", "pickles"],
-//   3: ["pickles", "tomato", "lettuce", "patty"],
-//   4: ["patty", "pickles", "lettuce", "tomato"]
-// };
 
 export default class GameContainer extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -44,6 +37,7 @@ export default class GameContainer extends React.Component {
   };
 
   burgerSubmit = () => {
+    debugger
     let results = [];
 
     for (let i = 0; i < this.state.currentBurger.length; i++) {
@@ -59,7 +53,7 @@ export default class GameContainer extends React.Component {
     this.setState({
       currentBurger: [],
       currentBurger2: [],
-      currentOrderNumber: Math.floor(Math.random() * 4) + 1,
+      currentOrderNumber: Math.floor(Math.random() * Object.keys(this.props.orders).length) + 1,
       clickCounter: 0
     });
   };
