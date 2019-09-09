@@ -4,7 +4,7 @@ import Ingredients from "../Components/Ingredients.js";
 // import Countdown from 'react-countdown-now'
 import Timer from "../Components/Timer"
 import EndGame from "../Components/EndGame"
-import Orders from '../Orders'
+// import Orders from '../Orders'
 
 // const orders = {
 //   1: ["patty", "tomato", "lettuce", "pickles"],
@@ -27,7 +27,6 @@ export default class GameContainer extends React.Component {
   }
   
   buildBurger = ingr => {
-
     if (this.state.clickCounter < 5) {
        this.setState({
           currentBurger: [...this.state.currentBurger, ingr],
@@ -48,7 +47,7 @@ export default class GameContainer extends React.Component {
     let results = [];
 
     for (let i = 0; i < this.state.currentBurger.length; i++) {
-      if (this.state.currentBurger[i].name !== Orders[this.state.currentOrderNumber][i]) {
+      if (this.state.currentBurger[i].name !== this.props.orders[this.state.currentOrderNumber][i]) {
         results.push(false);
       }
     }
@@ -98,13 +97,13 @@ export default class GameContainer extends React.Component {
             
             <ul>
             {
-              Orders[this.state.currentOrderNumber].map( ingr => <p>{ingr}</p> )
+              this.props.orders[this.state.currentOrderNumber].map( ingr => <p>{ingr}</p> )
             }
             </ul>
 
             <BurgerBuildContainer
               burger={this.state.currentBurger2}
-              orders={Orders}
+              orders={this.props.orders}
               removeIngredient={this.removeIngredient}
             />
 

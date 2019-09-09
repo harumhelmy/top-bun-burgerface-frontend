@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Welcome from './Welcome'
 import GameContainer from './Container/GameContainer'
+import { Orders } from './Orders'
 
 const playerUrl = 'http://localhost:3000/players'
 
@@ -15,7 +16,8 @@ class App extends React.Component {
       loginName: '',
       allPlayers: [],
       currentPlayer: '',
-      gameStarted: false
+      gameStarted: false, 
+      orders: []
     }
   }
 
@@ -29,7 +31,8 @@ class App extends React.Component {
     fetch(playerUrl)
     .then(res => res.json())
     .then(allPlayers => this.setState({
-      allPlayers
+      allPlayers,
+      orders: Orders()
     }))
   }
 
@@ -80,7 +83,7 @@ class App extends React.Component {
             />
         </Router>
 
-        {this.state.gameStarted ? <GameContainer exitGame={this.exitGame}/> : null}
+        {this.state.gameStarted ? <GameContainer exitGame={this.exitGame} orders={this.state.orders}/> : null}
        
         {
           this.state.currentPlayer && !this.state.gameStarted ? <Welcome logout={this.logout} startGame={this.startGame}/>

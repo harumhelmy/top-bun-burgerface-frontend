@@ -21,8 +21,7 @@ export default class BurgerBuildContainer extends React.Component {
           
           { this.props.burger.reverse().map( (ingredient, index) => (
             <p key={Math.floor(Math.random() * 1000000) + 1}
-              style={{top: `${180 - index * 10}`}}
-            >
+              style={{top: `${180 - index * 10}`}} >
               <img style={{margin: '-45px', zIndex: `-${index}`, position: 'relative', backgroundSize: 'contain'}}
                 src={require(`../images/${ingredient.name}.png`)} />
             </p>
