@@ -3,6 +3,7 @@ import BurgerBuildContainer from "./BurgerBuildContainer";
 import Ingredients from "../Components/Ingredients.js";
 // import Countdown from 'react-countdown-now'
 import Timer from "../Components/Timer"
+import EndGame from "../Components/EndGame"
 
 const orders = {
   1: ["patty", "tomato", "lettuce", "pickles"],
@@ -19,13 +20,13 @@ export default class GameContainer extends React.Component {
       currentBurger2: [],
       currentOrderNumber: 1,
       currentScore: 0,
-      clickCounter: 0
+      clickCounter: 0,
+      gameEnded: false 
     };
   }
   
   buildBurger = ingr => {
     console.log("hello");
-
 
     if (this.state.clickCounter < 5) {
        this.setState({
@@ -66,31 +67,44 @@ export default class GameContainer extends React.Component {
     });
   };
 
+  endGame = () => {
+    this.setState({
+      gameEnded: true
+    })
+  }
+
   render() {
     return (
       <div>
-        <Ingredients
-          buildBurger={this.buildBurger}
-          burgerSubmit={this.burgerSubmit}
-        />
-          <h4>Current order to be fulfilled:  </h4>
-          
-          <ul>
-          {
-            orders[this.state.currentOrderNumber].map( ingr => <p>{ingr}</p> )
-          }
-          </ul>
+        {
+          this.state.gameEnded === false 
+          ? 
+          <div>
+            <Ingredients
+              buildBurger={this.buildBurger}
+              burgerSubmit={this.burgerSubmit}
+            />
 
-        <BurgerBuildContainer
-          burger={this.state.currentBurger2}
-          orders={orders}
-        />
+            <h4> Current order to be fulfilled:  </h4>
+            
+            <ul>
+            {
+              orders[this.state.currentOrderNumber].map( ingr => <p>{ingr}</p> )
+            }
+            </ul>
 
-        <Timer />
+            <BurgerBuildContainer
+              burger={this.state.currentBurger2}
+              orders={orders}
+            />
 
-         <h3>Current score: {this.state.currentScore}</h3>
+            <Timer endGame={this.endGame} />
 
-
+            <h3>Current score: {this.state.currentScore}</h3>
+          </div>
+          : 
+            <EndGame exitGame={this.props.exitGame} currentScore={this.state.currentScore} />        
+      }
       </div>
     );
   }

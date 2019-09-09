@@ -60,6 +60,13 @@ class App extends React.Component {
     })
   }
 
+  exitGame = () => {
+    console.log("exit game")
+    this.setState({
+      gameStarted: false
+    })
+  }
+
   render(){
     return (
       <div className="App">
@@ -72,7 +79,8 @@ class App extends React.Component {
               }
             />
         </Router>
-        {this.state.gameStarted ? <GameContainer /> : null}
+
+        {this.state.gameStarted ? <GameContainer exitGame={this.exitGame}/> : null}
        
         {
           this.state.currentPlayer && !this.state.gameStarted ? <Welcome logout={this.logout} startGame={this.startGame}/>

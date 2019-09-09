@@ -22,7 +22,8 @@ export default class Timer extends React.Component {
     :
     this.setState({
       gameTimer: 0
-    })
+    }, this.props.endGame
+    )
   }
 
   componentWillUnmount = () => {
@@ -30,9 +31,11 @@ export default class Timer extends React.Component {
   }
 
   render () {
-  return (
-    <div>
-      <h4>{this.state.gameTimer}</h4>
-    </div>
-  )}
+
+    return (
+      <div>
+        <h4>{this.state.gameTimer}</h4>
+      </div>
+    )}
+
 }
