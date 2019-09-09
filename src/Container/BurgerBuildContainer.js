@@ -16,22 +16,21 @@ export default class BurgerBuildContainer extends React.Component {
           <br />
           <br />
           <br />
-        <div style={{height: '200px', position: 'relative'}}>
+
+        <div style={{height: '230px', position: 'relative'}}>
           
           { this.props.burger.reverse().map( (ingredient, index) => (
             <p key={Math.floor(Math.random() * 1000000) + 1}
               style={{top: `${180 - index * 10}`}}
             >
-              <img style={{margin: '-45px', zIndex: `-${index}`, position: 'relative'}}
+              <img style={{margin: '-45px', zIndex: `-${index}`, position: 'relative', backgroundSize: 'contain'}}
                 src={require(`../images/${ingredient.name}.png`)} />
             </p>
           ) ) }
           <br />
         </div>
 
-        
-
-        <div style={{position: 'relative', zIndex: '-10'}}>
+        <div style={{position: 'relative', zIndex: '-10', margin: '-25px'}}>
           <img src={require("../images/bottom_bun.png")} />
         </div>
 

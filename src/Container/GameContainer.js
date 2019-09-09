@@ -4,13 +4,14 @@ import Ingredients from "../Components/Ingredients.js";
 // import Countdown from 'react-countdown-now'
 import Timer from "../Components/Timer"
 import EndGame from "../Components/EndGame"
+import Orders from '../Orders'
 
-const orders = {
-  1: ["patty", "tomato", "lettuce", "pickles"],
-  2: ["lettuce", "tomato", "patty", "pickles"],
-  3: ["pickles", "tomato", "lettuce", "patty"],
-  4: ["patty", "pickles", "lettuce", "tomato"]
-};
+// const orders = {
+//   1: ["patty", "tomato", "lettuce", "pickles"],
+//   2: ["lettuce", "tomato", "patty", "pickles"],
+//   3: ["pickles", "tomato", "lettuce", "patty"],
+//   4: ["patty", "pickles", "lettuce", "tomato"]
+// };
 
 export default class GameContainer extends React.Component {
   constructor() {
@@ -47,7 +48,7 @@ export default class GameContainer extends React.Component {
     let results = [];
 
     for (let i = 0; i < this.state.currentBurger.length; i++) {
-      if (this.state.currentBurger[i].name !== orders[this.state.currentOrderNumber][i]) {
+      if (this.state.currentBurger[i].name !== Orders[this.state.currentOrderNumber][i]) {
         results.push(false);
       }
     }
@@ -97,13 +98,13 @@ export default class GameContainer extends React.Component {
             
             <ul>
             {
-              orders[this.state.currentOrderNumber].map( ingr => <p>{ingr}</p> )
+              Orders[this.state.currentOrderNumber].map( ingr => <p>{ingr}</p> )
             }
             </ul>
 
             <BurgerBuildContainer
               burger={this.state.currentBurger2}
-              orders={orders}
+              orders={Orders}
               removeIngredient={this.removeIngredient}
             />
 

@@ -16,13 +16,26 @@ const ingredients = [
   {
     name: "pickles",
     img_url: "../images/pickles.png"
-  }
-]
+  },
+  {
+    name: 'mushrooms',
+    img_url: '../images/mushrooms.png'
+  },
+  {
+    name: 'cheese',
+    img_url: '../images/cheese.png'
+  },
+  {
+    name: 'fried-egg',
+    img_url: '../images/fried-egg.png'
+  } 
+]  
 
 let styling = {
     width: '100px',
     height: '100px',
-    padding: '50px'
+    padding: '50px',
+    backgroundSize: 'auto'
 }
 
 const Ingredients= (props) =>{
@@ -38,7 +51,6 @@ const Ingredients= (props) =>{
         )
       }
       <img src={require('../images/top_bun.png')} onClick={()=>props.burgerSubmit()} />
-
     </div>
 
   )
