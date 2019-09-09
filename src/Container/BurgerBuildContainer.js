@@ -10,11 +10,12 @@ export default class BurgerBuildContainer extends React.Component {
   // }
 
   render() {
-    const burgerStyle = {
-        margin: "-25px",
-        "z-index": "-1",
-        position: "relative"
-      }
+
+    // const burgerStyle = {
+    //     margin: "-25px",
+    //     "z-index": index,
+    //     position: "relative"
+    // }
     
     return (
       <div>
@@ -32,9 +33,9 @@ export default class BurgerBuildContainer extends React.Component {
         <br />
         <br />
         <br />
-        { this.props.burger.reverse().map(ingredient => (
+        { this.props.burger.reverse().map( (ingredient, index) => (
           <p key={Math.floor(Math.random() * 1000000) + 1}>
-            <img style={burgerStyle}
+            <img style={{margin: '-45px', zIndex: `-${index}`, position: "relative"}}
               src={require(`../images/${ingredient.name}.png`)} />
           </p>
         ) ) }

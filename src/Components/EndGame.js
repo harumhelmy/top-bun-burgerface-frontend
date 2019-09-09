@@ -10,9 +10,6 @@ const EndGame = (props) => {
       <button onClick={props.exitGame}>
         Exit game
       </button>
-
-
-
     </div>
   )
 }
