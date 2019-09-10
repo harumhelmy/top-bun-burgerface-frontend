@@ -1,14 +1,29 @@
 import React from 'react'
 
+
+
+
 export default class Timer extends React.Component {
 
   constructor(){
     super()
     this.state = {
-      gameTimer: 30
+      gameTimer: 10,
+      modalIsOpen: false
     }
   }
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
 
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
   componentDidMount() {
     this.interval = setInterval(this.countdown, 1000)
   }
@@ -22,8 +37,9 @@ export default class Timer extends React.Component {
     :
     this.setState({
       gameTimer: 0
-    // }, this.props.endGame
-    })
+    }, 
+    this.props.changeGameState
+    )
   }
 
   componentWillUnmount = () => {

@@ -46,11 +46,11 @@ const Ingredients= (props) =>{
         ingredients.map( ingr =>           
           <div key ={ingr.name}  style={{display: "inline"}}onClick={ ()=>{props.buildBurger(ingr)} } alt=''>
             {ingr.name}
-            <img style={styling} src={require(`../images/${ingr.name}.png`)}/>
+            <img  alt="" style={styling} src={require(`../images/${ingr.name}.png`)}/>
           </div>
         )
       }
-      <img src={require('../images/top_bun.png')} onClick={()=>props.burgerSubmit()} />
+      <img alt="" src={require('../images/top_bun.png')} onClick={()=>props.burgerSubmit()} />
     </div>
 
   )
