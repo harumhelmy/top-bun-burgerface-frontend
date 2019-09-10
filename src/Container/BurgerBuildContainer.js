@@ -9,7 +9,10 @@ export default class BurgerBuildContainer extends React.Component {
           <br />
           <br />
           <br />
-          <button onClick={this.props.removeIngredient}>Remove last added ingredient</button>
+          <button className='button'
+            onClick={this.props.removeIngredient}>
+              Remove last added ingredient
+          </button>
           <br />
           <br />
 
@@ -24,9 +27,10 @@ export default class BurgerBuildContainer extends React.Component {
             </p>
           ) ) }
           <br />
+        
           <div style={{position: 'relative', zIndex: '-10', margin: '-35px'}}>
-          <img alt="" src={require("../images/bottom_bun.png")} />
-        </div>
+            <img alt="" src={require("../images/bottom_bun.png")} />
+          </div>
         </div>
 
 

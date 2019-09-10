@@ -1,13 +1,27 @@
 import React from "react";
 
-const EndGame = props => {
-  return (
-    <div>
-      <button onClick={props.changeGameState}>
-        Start another game
-      </button>
+const EndGame = ( { changeGameState, exitGame, showModal, lastScore } ) => {
 
-      <button onClick={props.exitGame}>Exit game</button>
+  const showHideClassName = showModal ? 'modal is-active' : 'modal display-none'
+  // debugger 
+
+  return (
+    <div className={showHideClassName}>
+     <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Time's up!</p>
+      </header>
+      <section class="modal-card-body">
+        Nice work on those burgers! 🍔 Your score is: {lastScore}
+      </section>
+        <button className='button'
+          onClick={changeGameState}>
+          Start another game
+        </button>
+
+        <button className='button'
+          onClick={exitGame}>Exit game</button>
+      </div>
     </div>
   );
 };

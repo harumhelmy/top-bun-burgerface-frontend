@@ -32,9 +32,9 @@ const ingredients = [
 ]  
 
 let styling = {
-    width: '8%',
-    height: '8%',
-    padding: '50px',
+    width: '10%',
+    height: '10%',
+    padding: '20px',
     backgroundSize: 'auto'
 }
 
