@@ -122,9 +122,10 @@ export default class GameContainer extends React.Component {
             
           
               {this.props.orders[this.state.currentOrderNumber] ? 
-                this.props.orders[this.state.currentOrderNumber].map( ingr => <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> )
+                this.props.orders[this.state.currentOrderNumber].slice(0).reverse().map( (ingr, index) => <p><img style={{margin: '-90px', zIndex: `-${index}`, position: 'relative', backgroundSize: 'contain'}} 
+                height="5%" width="5%" alt='' src={require(`../images/${ingr}.png`)} key={Math.floor(Math.random() * 1000000) + 1}></img></p> )
                  :  null}
-            
+        
 
             <h3>Current score: {this.state.currentScore}</h3>
             <BurgerBuildContainer
