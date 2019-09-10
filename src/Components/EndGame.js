@@ -12,7 +12,7 @@ const EndGame = ( { changeGameState, exitGame, showModal, lastScore } ) => {
         <p class="modal-card-title">Time's up!</p>
       </header>
       <section class="modal-card-body">
-        Nice work on those burgers! 🍔 Your score is: {lastScore}
+        Nice work! You successfully made {lastScore} 🍔. 
       </section>
         <button className='button'
           onClick={changeGameState}>

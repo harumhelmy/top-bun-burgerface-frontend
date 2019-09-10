@@ -5,7 +5,7 @@ export default class Timer extends React.Component {
   constructor(){
     super()
     this.state = {
-      gameTimer: 990
+      gameTimer: 999  
     }
   }
   
@@ -35,7 +35,7 @@ export default class Timer extends React.Component {
 
     return (
       <div>
-        <h4>{this.state.gameTimer}</h4>
+        <h4>Seconds remaining: {this.state.gameTimer}</h4>
       </div>
     )}
 

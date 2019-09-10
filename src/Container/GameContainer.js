@@ -50,7 +50,10 @@ export default class GameContainer extends React.Component {
   };
 
   burgerSubmit = () => {
+    console.log('clicking the bunnnn')
+
     let results = [];
+
     if (this.state.currentOrderNumber !== null){
     for (let i = 0; i < this.state.currentBurger.length; i++) {
       if (this.state.currentBurger[i].name === this.props.orders[this.state.currentOrderNumber][i]) {
@@ -120,34 +123,48 @@ export default class GameContainer extends React.Component {
               burgerSubmit={this.burgerSubmit}
             />
             
-          
-              {this.props.orders[this.state.currentOrderNumber] ? 
-                this.props.orders[this.state.currentOrderNumber].map( ingr => <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> )
-                 :  null}
+            <div className="columns">
+
+            {/** rendering current order to be fulfilled **/}
             
+              <div className="column">
+                {this.props.orders[this.state.currentOrderNumber] 
+                ? this.props.orders[this.state.currentOrderNumber].map( ingr => <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> )
+                :  null}
+              </div>
+              
+              <div className="column is-three-fifths">
+                <BurgerBuildContainer
+                  burger={this.state.currentBurger2}
+                  orders={this.props.orders}
+                  removeIngredient={this.removeIngredient}
+                />
+              </div>
 
-            <h3>Current score: {this.state.currentScore}</h3>
-            <BurgerBuildContainer
-              burger={this.state.currentBurger2}
-              orders={this.props.orders}
-              removeIngredient={this.removeIngredient}
-            />
+              <div className="column">
+                <h3>Current score: {this.state.currentScore}</h3>
+                <Timer changeGameState={this.changeGameState} />
+              </div>
+              
+            </div>
 
-            <Timer changeGameState={this.changeGameState} />
-                <div style={{position: 'relative', display: "flex", flexDirection: 'row',  alignItems: 'center' , justifyContent: 'flex-end' }}>
-                  {/* <div> */}
-                {/* {this.props.orders[this.state.currentOrderNumber1].map( ingr =>  <div style={{display: 'flex', flexDirection: 'column'}} key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</div> )} */}
-            {/* </div> */}
-            <Customers selectOrder={this.selectOrder} order={this.props.orders[this.state.currentOrderNumber1]} orderNumber={this.state.currentOrderNumber1}/>
-            <Customers selectOrder={this.selectOrder} order={this.props.orders[this.state.currentOrderNumber2]} orderNumber={this.state.currentOrderNumber2}/>
-            <Customers selectOrder={this.selectOrder} order={this.props.orders[this.state.currentOrderNumber3]} orderNumber={this.state.currentOrderNumber3}/>
-            <Customers selectOrder={this.selectOrder} order={this.props.orders[this.state.currentOrderNumber4]} orderNumber={this.state.currentOrderNumber4}/>
-                </div>
+
+              {/* the div below renders the four random customer orders the user can pick to build next */}
+              <div style={{
+                  position: 'relative', 
+                  display: "flex", 
+                  flexDirection: 'row',  
+                  alignItems: 'center', 
+                  justifyContent: 'flex-end' 
+              }}>
+                  <Customers selectOrder={this.selectOrder} order={this.props.orders[this.state.currentOrderNumber1]} orderNumber={this.state.currentOrderNumber1}/>
+                  <Customers selectOrder={this.selectOrder} order={this.props.orders[this.state.currentOrderNumber2]} orderNumber={this.state.currentOrderNumber2}/>
+                  <Customers selectOrder={this.selectOrder} order={this.props.orders[this.state.currentOrderNumber3]} orderNumber={this.state.currentOrderNumber3}/>
+                  <Customers selectOrder={this.selectOrder} order={this.props.orders[this.state.currentOrderNumber4]} orderNumber={this.state.currentOrderNumber4}/>
+              </div>
 
           </div>
-
-          : 
-            <EndGame exitGame={this.props.exitGame} 
+          : <EndGame exitGame={this.props.exitGame} 
               showModal={this.state.modalState}
               lastScore={this.state.lastScore} 
               changeGameState={this.changeGameState}
@@ -157,3 +174,9 @@ export default class GameContainer extends React.Component {
     );
   }
 }
+
+
+{/* <div> */}
+  {/* {this.props.orders[this.state.currentOrderNumber1].map( ingr =>  <div style={{display: 'flex', flexDirection: 'column'}} key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</div> )} */}
+{/* </div> */}
+          
