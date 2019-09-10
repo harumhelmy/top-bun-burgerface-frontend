@@ -9,7 +9,11 @@ export default class GameContainer extends React.Component {
 
   constructor() {
     super();
-    this.state = {
+    this.state = this.initialState
+  }
+
+  get initialState() {
+   return {
       currentBurger: [],
       currentBurger2: [],
       currentOrderNumber: 1,
@@ -18,6 +22,7 @@ export default class GameContainer extends React.Component {
       gameEnded: false 
     };
   }
+
   
   buildBurger = ingr => {
     if (this.state.clickCounter < 5) {
@@ -37,18 +42,25 @@ export default class GameContainer extends React.Component {
   };
 
   burgerSubmit = () => {
-    debugger
     let results = [];
 
     for (let i = 0; i < this.state.currentBurger.length; i++) {
-      if (this.state.currentBurger[i].name !== this.props.orders[this.state.currentOrderNumber][i]) {
-        results.push(false);
+      if (this.state.currentBurger[i].name === this.props.orders[this.state.currentOrderNumber][i]) {
+        
+        results.push(true);
       }
     }
 
-    results.includes(false)
-      ? console.log(results)
-      : this.setState({ currentScore: this.state.currentScore + 1 });
+
+    if (results.length === 4 ) {
+      let update = this.state.currentScore
+      this.setState({ currentScore: update + 1 });
+     }
+     else{
+     console.log('wrong')
+  
+     }
+
 
     this.setState({
       currentBurger: [],
@@ -58,9 +70,10 @@ export default class GameContainer extends React.Component {
     });
   };
 
-  endGame = () => {
+  changeGameState = () => {
     this.setState({
-      gameEnded: true
+      ...this.initialState,
+      gameEnded: !this.state.gameEnded
     })
   }
 
@@ -91,22 +104,22 @@ export default class GameContainer extends React.Component {
             
             <ul>
             {
-              this.props.orders[this.state.currentOrderNumber].map( ingr => <p>{ingr}</p> )
+              this.props.orders[this.state.currentOrderNumber].map( ingr => <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> )
             }
             </ul>
 
+            <h3>Current score: {this.state.currentScore}</h3>
             <BurgerBuildContainer
               burger={this.state.currentBurger2}
               orders={this.props.orders}
               removeIngredient={this.removeIngredient}
             />
 
-            <Timer endGame={this.endGame} />
+            <Timer changeGameState={this.changeGameState} />
 
-            <h3>Current score: {this.state.currentScore}</h3>
           </div>
           : 
-            <EndGame exitGame={this.props.exitGame} currentScore={this.state.currentScore} />        
+            <EndGame exitGame={this.props.exitGame} currentScore={this.state.currentScore} changeGameState={this.changeGameState}/>        
       }
       </div>
     );
