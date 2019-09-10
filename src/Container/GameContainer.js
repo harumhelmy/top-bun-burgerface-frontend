@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import BurgerBuildContainer from "./BurgerBuildContainer";
 import Ingredients from "../Components/Ingredients.js";
 // import Countdown from 'react-countdown-now'
@@ -19,7 +19,9 @@ export default class GameContainer extends React.Component {
       currentOrderNumber: 1,
       currentScore: 0,
       clickCounter: 0,
-      gameEnded: false 
+      gameEnded: false,
+      modalState: false,
+      lastScore: 0
     };
   }
 
@@ -46,21 +48,16 @@ export default class GameContainer extends React.Component {
 
     for (let i = 0; i < this.state.currentBurger.length; i++) {
       if (this.state.currentBurger[i].name === this.props.orders[this.state.currentOrderNumber][i]) {
-        
         results.push(true);
       }
     }
 
-
-    if (results.length === 4 ) {
+    if ( results.length === 4 ) {
       let update = this.state.currentScore
       this.setState({ currentScore: update + 1 });
-     }
-     else{
-     console.log('wrong')
-  
-     }
-
+    } else {
+      console.log('oops')    
+    }
 
     this.setState({
       currentBurger: [],
@@ -73,9 +70,11 @@ export default class GameContainer extends React.Component {
   changeGameState = () => {
     this.setState({
       ...this.initialState,
-      gameEnded: !this.state.gameEnded
+      gameEnded: !this.state.gameEnded,
+      modalState: !this.state.modalState,
+      lastScore: this.state.currentScore 
     })
-  }
+  } 
 
   removeIngredient = () => {
     this.state.currentBurger.pop()
@@ -90,36 +89,51 @@ export default class GameContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         {
           this.state.gameEnded === false 
           ? 
           <div>
+            <h1> 🍔 Top Bun 🍔 </h1>
+
             <Ingredients
               buildBurger={this.buildBurger}
               burgerSubmit={this.burgerSubmit}
             />
-
-            <h4> Current order to be fulfilled:  </h4>
             
-         
-              {this.props.orders[this.state.currentOrderNumber].map( ingr => <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> )}
-         
+               
+              
+                <h4> Current order to be fulfilled:  </h4>
+                  <ul>
+                  {
+                    this.props.orders[this.state.currentOrderNumber].map( ingr => 
+                      <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> 
+                    )
+                  }
+                  </ul>
+              
+                <h3>Current score: {this.state.currentScore}</h3>
 
-            <h3>Current score: {this.state.currentScore}</h3>
-            <BurgerBuildContainer
-              burger={this.state.currentBurger2}
-              orders={this.props.orders}
-              removeIngredient={this.removeIngredient}
-            />
+               
+           
+              <Timer changeGameState={this.changeGameState} />
 
-            <Timer changeGameState={this.changeGameState} />
+              <BurgerBuildContainer
+                  burger={this.state.currentBurger2}
+                  orders={this.props.orders}
+                  removeIngredient={this.removeIngredient}
+                />
 
           </div>
+
           : 
-            <EndGame exitGame={this.props.exitGame} currentScore={this.state.currentScore} changeGameState={this.changeGameState}/>        
+            <EndGame exitGame={this.props.exitGame} 
+              showModal={this.state.modalState}
+              lastScore={this.state.lastScore} 
+              changeGameState={this.changeGameState}
+            />        
       }
-      </div>
+      </Fragment>
     );
   }
 }

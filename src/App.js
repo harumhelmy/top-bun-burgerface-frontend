@@ -1,6 +1,8 @@
 import React from 'react';
 import Login from './Login'
 import './App.css';
+// import '../node_modules/bulma/css/bulma.css'
+import './App.sass' // in lieu of importing everything, we're only importing what we want
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Welcome from './Welcome'
 import GameContainer from './Container/GameContainer'

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 const ingredients = [
   {
@@ -32,28 +32,38 @@ const ingredients = [
 ]  
 
 let styling = {
-    width: '100px',
-    height: '100px',
-    padding: '50px',
+    width: '10%',
+    height: '10%',
+    padding: '20px',
     backgroundSize: 'auto'
 }
 
 const Ingredients= (props) =>{
 
   return (
-    <div>
-      {
-        ingredients.map( ingr =>           
-          <div key ={ingr.name}  style={{display: "inline"}}onClick={ ()=>{props.buildBurger(ingr)} } alt=''>
-            {ingr.name}
-            <img  alt="" style={styling} src={require(`../images/${ingr.name}.png`)}/>
-          </div>
-        )
-      }
-      <img alt="" src={require('../images/top_bun.png')} onClick={()=>props.burgerSubmit()} />
-    </div>
-    
-
+    <Fragment> 
+      <div>
+        {
+          ingredients.map( ingr =>           
+            <div key={ingr.name}  
+              style={{display: "inline"}}
+              onClick={ ()=>{props.buildBurger(ingr)} } 
+              alt={ingr.name}
+            >
+              <img alt="" 
+                style={styling}
+                className='ingredients' 
+                src={require(`../images/${ingr.name}.png`)}
+              />
+            </div>
+          )
+        }
+        <div>
+          <img alt="" src={require('../images/top_bun.png')} 
+            onClick={()=>props.burgerSubmit()} />
+        </div>
+      </div>
+    </Fragment>
   )
 }
 

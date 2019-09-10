@@ -17,3 +17,9 @@ code {
   z-index: -1;
   position:relative;
 }
+
+.ingredients {
+  height: 30%;
+  width: 30%;
+  padding: '50px'
+}
