@@ -21,9 +21,7 @@ export default class BurgerBuildContainer extends React.Component {
             justifyContent: "flex-end"
           }}
         >
-          {[...this.props.burger]
-            .reverse()
-            .map((ingredient, index) => (
+          {this.props.burger.slice(0).reverse().map((ingredient, index) => (
               <p
                 key={Math.floor(Math.random() * 1000000) + 1}
                 style={{ top: `${180 - index * 10}` }}
