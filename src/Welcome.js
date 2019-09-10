@@ -4,6 +4,9 @@ const Welcome = (props) => {
   return(
     <div>
       <h1>Welcome to Top Bun BurgerFace</h1>
+      <h3>Hi there friend! Your goal today is to build as many burgers as possible in 30 seconds. 
+        To win a score, each ingredient in the burger needs to be in the order specified by the current customer's order. 
+        The top bun is your submit button. </h3>
       <button onClick={ () => props.startGame()}>Start Game</button>
       <button onClick={props.logout}>Logout</button>
     </div>

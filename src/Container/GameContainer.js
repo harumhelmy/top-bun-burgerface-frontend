@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import BurgerBuildContainer from "./BurgerBuildContainer";
 import Ingredients from "../Components/Ingredients.js";
 // import Countdown from 'react-countdown-now'
@@ -54,7 +54,8 @@ export default class GameContainer extends React.Component {
       let update = this.state.currentScore
       this.setState({ currentScore: update + 1 });
     } else {
-      console.log('wrong')
+      let update = this.state.currentScore
+      this.setState({ currentScore: update - 1 });
     }
 
     this.setState({
@@ -85,26 +86,29 @@ export default class GameContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         {
           this.state.gameEnded === false 
           ? 
           <div>
-            
+
             <Ingredients
               buildBurger={this.buildBurger}
               burgerSubmit={this.burgerSubmit}
             />
+           
+              <h4> Current order to be fulfilled:  </h4>
+                <ul>
+                {
+                  this.props.orders[this.state.currentOrderNumber].map( ingr => 
+                    <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> 
+                  )
+                }
+                </ul>
 
-            <h4> Current order to be fulfilled:  </h4>
-            
-            <ul>
-            {
-              this.props.orders[this.state.currentOrderNumber].map( ingr => <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> )
-            }
-            </ul>
+              <h3>Current score: {this.state.currentScore}</h3>
 
-            <h3>Current score: {this.state.currentScore}</h3>
+              <Timer changeGameState={this.changeGameState} />
 
             <BurgerBuildContainer
               burger={this.state.currentBurger2}
@@ -112,15 +116,12 @@ export default class GameContainer extends React.Component {
               removeIngredient={this.removeIngredient}
             />
 
-            
-
-            <Timer changeGameState={this.changeGameState} />
 
           </div>
           : 
             <EndGame exitGame={this.props.exitGame} currentScore={this.state.currentScore} changeGameState={this.changeGameState}/>        
       }
-      </div>
+      </Fragment>
     );
   }
 }
