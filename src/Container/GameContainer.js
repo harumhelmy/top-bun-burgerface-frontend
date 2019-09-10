@@ -25,8 +25,9 @@ export default class GameContainer extends React.Component {
       currentOrderNumber1: 2,
       currentOrderNumber2: 3,
       currentOrderNumber3: 4,
-      currentOrderNumber4: 5
-    };
+      currentOrderNumber4: 5,
+      incorrectBurger: false
+   };
   }
 
   buildBurger = ingr => {
@@ -38,11 +39,6 @@ export default class GameContainer extends React.Component {
       });
     } else {
       alert("stahp");
-      // this.setState({
-      //   currentBurger: [],
-      //   currentBurger2: [],
-      //   clickCounter: 0
-      // })
     }
   };
 
@@ -62,7 +58,9 @@ export default class GameContainer extends React.Component {
         let update = this.state.currentScore;
         this.setState({ currentScore: update + 1 });
       } else {
-        console.log("oops");
+        this.setState({
+          incorrectBurger: true
+        })
       }
 
       this.setState({
@@ -114,9 +112,14 @@ export default class GameContainer extends React.Component {
     this.setState({ currentOrderNumber: orderNumber });
   };
 
+  reverseIncorrectBurger = () => {
+    setTimeout(()=>{this.setState({ incorrectBurger: false })}, 2000)
+  }
+ 
   render() {
     return (
       <Fragment>
+
         {this.state.gameEnded === false ? (
           <div>
             <h1> 🍔 Top Bun 🍔 </h1>
@@ -127,7 +130,8 @@ export default class GameContainer extends React.Component {
             />
 
             <div className="columns">
-              <div className="column">
+
+              <div className="column">  {/** rendering current order to be fulfilled **/}
                 {this.props.orders[this.state.currentOrderNumber]
                   ? this.props.orders[this.state.currentOrderNumber]
                       .slice(0)
@@ -150,23 +154,30 @@ export default class GameContainer extends React.Component {
                         </p>
                       ))
                   : null}
+
               </div>
 
-              <div className="column is-three-fifths">
-                {/** rendering current order to be fulfilled **/}
+              <div className="column is-three-fifths"> {/** this is where the magic of ingredient stacking happens **/}
                 <BurgerBuildContainer
                   burger={this.state.currentBurger2}
                   orders={this.props.orders}
                   removeIngredient={this.removeIngredient}
-                  />
+                />
 
               </div>
 
-        
-
-              <div className="column">
+              <div className="column"> {/** rendering the current score, timer, and conditionally, an alert to show when someone built the wrong burger **/}
                 <h3>Current score: {this.state.currentScore}</h3>
                 <Timer changeGameState={this.changeGameState} />
+                {
+                  this.state.incorrectBurger 
+                  ? 
+                  <div>
+                    <h3>Oop, you made the wrong burger!</h3>
+                    {this.reverseIncorrectBurger()}
+                  </div>
+                  : null
+                }
               </div>
             </div>
 
@@ -202,13 +213,16 @@ export default class GameContainer extends React.Component {
               />
             </div>
           </div>
+           
         ) : (
-          <EndGame
+          <EndGame 
             exitGame={this.props.exitGame}
             showModal={this.state.modalState}
             lastScore={this.state.lastScore}
             changeGameState={this.changeGameState}
           />
+        
+        
         )}
       </Fragment>
     );
