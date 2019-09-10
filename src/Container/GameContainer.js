@@ -79,6 +79,8 @@ export default class GameContainer extends React.Component {
           Math.floor(Math.random() * Object.keys(this.props.orders).length) + 1,
         clickCounter: 0
       });
+    } else {
+      alert('Oh hey, you gotta pick a burger to build before you can submit it! See the four orders below the bottom bun.')
     }
   } 
 
