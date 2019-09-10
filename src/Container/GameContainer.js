@@ -102,11 +102,11 @@ export default class GameContainer extends React.Component {
 
   removeIngredient = () => {
     this.state.currentBurger.pop();
-    this.state.currentBurger2.shift();
+    this.state.currentBurger2.pop();
 
     this.setState({
       currentBurger: this.state.currentBurger,
-      currentBurger2: this.state.currentBurger2.reverse(),
+      currentBurger2: this.state.currentBurger2,
       clickCounter: this.state.clickCounter - 1
     });
   };
