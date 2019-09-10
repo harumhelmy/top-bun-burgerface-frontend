@@ -54,7 +54,7 @@ export default class GameContainer extends React.Component {
 
     let results = [];
 
-    if (this.state.currentOrderNumber !== null){
+    if (this.state.currentOrderNumber !== null) {
     for (let i = 0; i < this.state.currentBurger.length; i++) {
       if (this.state.currentBurger[i].name === this.props.orders[this.state.currentOrderNumber][i]) {
         results.push(true);
@@ -78,6 +78,8 @@ export default class GameContainer extends React.Component {
       currentOrderNumber4: Math.floor(Math.random() * Object.keys(this.props.orders).length) + 1,
       clickCounter: 0
     });
+  } else {
+    alert('You need to pick a burger to work on first!')
   }
   };
 
