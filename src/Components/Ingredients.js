@@ -52,6 +52,7 @@ const Ingredients= (props) =>{
       }
       <img alt="" src={require('../images/top_bun.png')} onClick={()=>props.burgerSubmit()} />
     </div>
+    
 
   )
 }

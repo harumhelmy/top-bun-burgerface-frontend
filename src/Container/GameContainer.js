@@ -102,11 +102,9 @@ export default class GameContainer extends React.Component {
 
             <h4> Current order to be fulfilled:  </h4>
             
-            <ul>
-            {
-              this.props.orders[this.state.currentOrderNumber].map( ingr => <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> )
-            }
-            </ul>
+         
+              {this.props.orders[this.state.currentOrderNumber].map( ingr => <p key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</p> )}
+         
 
             <h3>Current score: {this.state.currentScore}</h3>
             <BurgerBuildContainer

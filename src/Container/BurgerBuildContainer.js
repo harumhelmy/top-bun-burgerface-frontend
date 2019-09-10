@@ -12,26 +12,24 @@ export default class BurgerBuildContainer extends React.Component {
           <button onClick={this.props.removeIngredient}>Remove last added ingredient</button>
           <br />
           <br />
-          <br />
-          <br />
-          <br />
-          <br />
 
-        <div style={{height: '230px', position: 'relative'}}>
+
+        <div style={{height: '330px', position: 'relative', display: "flex", flexDirection: 'column',  alignItems: 'center', justifyContent: 'flex-end'}}>
           
           { this.props.burger.reverse().map( (ingredient, index) => (
             <p key={Math.floor(Math.random() * 1000000) + 1}
               style={{top: `${180 - index * 10}`}} >
-              <img alt="" style={{margin: '-45px', zIndex: `-${index}`, position: 'relative', backgroundSize: 'contain'}}
+              <img alt="" style={{margin: '-90px', zIndex: `-${index}`, position: 'relative', backgroundSize: 'contain'}}
                 src={require(`../images/${ingredient.name}.png`)} />
             </p>
           ) ) }
           <br />
-        </div>
-
-        <div style={{position: 'relative', zIndex: '-10', margin: '-25px'}}>
+          <div style={{position: 'relative', zIndex: '-10', margin: '-35px'}}>
           <img alt="" src={require("../images/bottom_bun.png")} />
         </div>
+        </div>
+
+
 
       </Fragment>
     );
