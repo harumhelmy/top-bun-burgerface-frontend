@@ -46,21 +46,16 @@ export default class GameContainer extends React.Component {
 
     for (let i = 0; i < this.state.currentBurger.length; i++) {
       if (this.state.currentBurger[i].name === this.props.orders[this.state.currentOrderNumber][i]) {
-        
         results.push(true);
       }
     }
 
-
-    if (results.length === 4 ) {
+    if ( results.length === 4 ) {
       let update = this.state.currentScore
       this.setState({ currentScore: update + 1 });
-     }
-     else{
-     console.log('wrong')
-  
-     }
-
+    } else {
+      console.log('wrong')
+    }
 
     this.setState({
       currentBurger: [],
@@ -95,6 +90,7 @@ export default class GameContainer extends React.Component {
           this.state.gameEnded === false 
           ? 
           <div>
+            
             <Ingredients
               buildBurger={this.buildBurger}
               burgerSubmit={this.burgerSubmit}
@@ -109,11 +105,14 @@ export default class GameContainer extends React.Component {
             </ul>
 
             <h3>Current score: {this.state.currentScore}</h3>
+
             <BurgerBuildContainer
               burger={this.state.currentBurger2}
               orders={this.props.orders}
               removeIngredient={this.removeIngredient}
             />
+
+            
 
             <Timer changeGameState={this.changeGameState} />
 
