@@ -8,22 +8,10 @@ export default class Timer extends React.Component {
   constructor(){
     super()
     this.state = {
-      gameTimer: 10,
-      modalIsOpen: false
+      gameTimer: 10
     }
   }
-  openModal() {
-    this.setState({modalIsOpen: true});
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
-
-  closeModal() {
-    this.setState({modalIsOpen: false});
-  }
+  
   componentDidMount() {
     this.interval = setInterval(this.countdown, 1000)
   }
