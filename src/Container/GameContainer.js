@@ -136,13 +136,13 @@ export default class GameContainer extends React.Component {
                         <p>
                           <img
                             style={{
-                              margin: "-90px",
+                              margin: "-45px",
                               zIndex: `-${index}`,
                               position: "relative",
                               backgroundSize: "contain"
                             }}
-                            height="5%"
-                            width="5%"
+                            height="65%"
+                            width="65%"
                             alt=""
                             src={require(`../images/${ingr}.png`)}
                             key={Math.floor(Math.random() * 1000000) + 1}
