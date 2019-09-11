@@ -1,7 +1,7 @@
 import React from "react";
 
 
-
+const characters = ['Bart', 'Bobby', 'Cookie', 'Fry', 'Homer', 'Kirby', 'Patrick', 'Kid', 'Tina', 'Tom', 'Val', 'Winnie']
 
 export default class Customers extends React.Component {
     
@@ -35,7 +35,7 @@ export default class Customers extends React.Component {
 
 
             {/* {this.props.order.map( ingr =>  <div style={{position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-end'}} key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</div> )} */}
-                <img margin='-100px' alt='' height="20%" width="20%"src='https://thenypost.files.wordpress.com/2016/09/tv_simpsons_homer1-1a.jpg?quality=90&strip=all&strip=all'/>
+                <img margin='-100px' alt='' height="20%" width="20%"src={require('../characterImages/TinaBobsBurgers.gif')}/>
             
                 </div>
         )

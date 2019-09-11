@@ -6,6 +6,9 @@ import Timer from "../Components/Timer";
 import EndGame from "../Components/EndGame";
 import Customers from "../Components/Customers";
 
+
+
+
 export default class GameContainer extends React.Component {
   constructor() {
     super();
