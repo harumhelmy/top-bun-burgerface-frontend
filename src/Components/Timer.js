@@ -5,11 +5,7 @@ export default class Timer extends React.Component {
   constructor(){
     super()
     this.state = {
-<<<<<<< HEAD
-      gameTimer: 50
-=======
       gameTimer: 30
->>>>>>> styling-forever
     }
   }
   
