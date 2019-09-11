@@ -13,8 +13,7 @@ export default class BurgerBuildContainer extends React.Component {
         <div
           
           style={{
-            zIndex: "-100",
-            height: "730px",
+            height: "500px",
             position: "relative",
             display: "flex",
             flexDirection: "column",
