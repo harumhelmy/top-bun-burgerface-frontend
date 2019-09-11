@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Welcome from './Welcome'
 import GameContainer from './Container/GameContainer'
 import { Orders } from './Orders'
+import ThunderDome from './ThunderDome'
 
 const playerUrl = 'http://localhost:3000/players'
 
@@ -74,15 +75,17 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="App">
+      <div className="App" >
         <Router>
-            <Route exact path='/' render={ () => <Login 
+          
+            <Route exact path='/login' render={ () => <Login 
               loginName={this.state.loginName}
               getLoginName={this.getLoginName}
               onLogin={this.onLogin}
               currentPlayer={this.state.currentPlayer} />
               }
             />
+              <Route exact path='/' component={ThunderDome} />
         </Router>
 
         {this.state.gameStarted ? <GameContainer exitGame={this.exitGame} orders={this.state.orders}/> : null}

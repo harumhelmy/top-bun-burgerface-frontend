@@ -122,7 +122,11 @@ export default class GameContainer extends React.Component {
     }, 2000);
   };
 
+
+
+
   render() {
+    
     return (
       <Fragment>
         {this.state.gameEnded === false ? (

@@ -20,8 +20,8 @@ export default class BurgerBuildContainer extends React.Component {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "flex-end",
-            
-            backgroundImage: `url(${require('../images/TomCruise.jpg')})`,
+            margin: '0 auto',
+            // backgroundImage: `url(${require('../images/TomCruise.jpg')})`,
             // require(`../images/${ingr}.png`)
             // require(`../images/${ingr.name}.png`),
             backgroundSize: '100% 100%'
