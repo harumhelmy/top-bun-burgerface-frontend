@@ -47,11 +47,14 @@ export default class GameContainer extends React.Component {
     let results = [];
 
     if (this.state.currentOrderNumber !== null) {
-    for (let i = 0; i < this.state.currentBurger.length; i++) {
-      if (this.state.currentBurger[i].name === this.props.orders[this.state.currentOrderNumber][i]) {
-        results.push(true);
+      for (let i = 0; i < this.state.currentBurger.length; i++) {
+        if (
+          this.state.currentBurger[i].name ===
+          this.props.orders[this.state.currentOrderNumber][i]
+        ) {
+          results.push(true);
+        }
       }
-    }
 
       if (results.length === 4) {
         let update = this.state.currentScore;
@@ -59,7 +62,7 @@ export default class GameContainer extends React.Component {
       } else {
         this.setState({
           incorrectBurger: true
-        })
+        });
       }
 
       this.setState({
@@ -77,9 +80,11 @@ export default class GameContainer extends React.Component {
         clickCounter: 0
       });
     } else {
-      alert('Oh hey, you gotta pick a burger to build before you can submit it! See the four orders below the bottom bun.')
+      alert(
+        "Oh hey, you gotta pick a burger to build before you can submit it! See the four orders below the bottom bun."
+      );
     }
-  } 
+  };
 
   changeGameState = () => {
     this.setState({
@@ -112,13 +117,14 @@ export default class GameContainer extends React.Component {
   };
 
   reverseIncorrectBurger = () => {
-    setTimeout(()=>{this.setState({ incorrectBurger: false })}, 2000)
-  }
- 
+    setTimeout(() => {
+      this.setState({ incorrectBurger: false });
+    }, 2000);
+  };
+
   render() {
     return (
       <Fragment>
-
         {this.state.gameEnded === false ? (
           <div>
             <h1> 🍔 Top Bun 🍔 </h1>
@@ -129,8 +135,9 @@ export default class GameContainer extends React.Component {
             />
 
             <div className="columns">
-
-              <div className="column">  {/** rendering current order to be fulfilled **/}
+              <div className="column">
+                {" "}
+                {/** rendering current order to be fulfilled **/}
                 {this.props.orders[this.state.currentOrderNumber]
                   ? this.props.orders[this.state.currentOrderNumber]
                       .slice(0)
@@ -153,30 +160,29 @@ export default class GameContainer extends React.Component {
                         </p>
                       ))
                   : null}
-
               </div>
 
-              <div className="column is-three-fifths"> {/** this is where the magic of ingredient stacking happens **/}
+              <div className="column is-three-fifths">
+                {" "}
+                {/** this is where the magic of ingredient stacking happens **/}
                 <BurgerBuildContainer
                   burger={this.state.currentBurger2}
                   orders={this.props.orders}
                   removeIngredient={this.removeIngredient}
                 />
-
               </div>
 
-              <div className="column"> {/** rendering the current score, timer, and conditionally, an alert to show when someone built the wrong burger **/}
+              <div className="column">
+                {" "}
+                {/** rendering the current score, timer, and conditionally, an alert to show when someone built the wrong burger **/}
                 <h3>Current score: {this.state.currentScore}</h3>
                 <Timer changeGameState={this.changeGameState} />
-                {
-                  this.state.incorrectBurger 
-                  ? 
+                {this.state.incorrectBurger ? (
                   <div>
                     <h3>Oop, you made the wrong burger!</h3>
                     {this.reverseIncorrectBurger()}
                   </div>
-                  : null
-                }
+                ) : null}
               </div>
             </div>
 
@@ -190,7 +196,6 @@ export default class GameContainer extends React.Component {
                 justifyContent: "flex-end"
               }}
             >
-              
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber1]}
@@ -213,22 +218,18 @@ export default class GameContainer extends React.Component {
               />
             </div>
           </div>
-           
         ) : (
-          <EndGame 
+          <EndGame
             exitGame={this.props.exitGame}
             showModal={this.state.modalState}
             lastScore={this.state.lastScore}
             changeGameState={this.changeGameState}
           />
-        
-        
         )}
       </Fragment>
     );
   }
 }
-
 
 {
   /* <div> */
