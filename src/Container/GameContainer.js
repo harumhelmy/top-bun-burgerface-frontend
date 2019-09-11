@@ -25,7 +25,8 @@ export default class GameContainer extends React.Component {
       currentOrderNumber1: Math.floor(Math.random() * 10) + 1,
       currentOrderNumber2: Math.floor(Math.random() * 10) + 1,
       currentOrderNumber3: Math.floor(Math.random() * 10) + 1,
-      currentOrderNumber4: Math.floor(Math.random() * 10) + 1
+      currentOrderNumber4: Math.floor(Math.random() * 10) + 1,
+      currentCustomerTimerInterval: 0
     };
   }
 
@@ -45,6 +46,10 @@ export default class GameContainer extends React.Component {
     console.log("clicking the bunnnn");
 
     let results = [];
+
+    // console.log(this.state.currentCustomerTimerInterval)
+
+    clearInterval(this.state.currentCustomerTimerInterval)
 
     if (this.state.currentOrderNumber !== null) {
       for (let i = 0; i < this.state.currentBurger.length; i++) {
@@ -110,7 +115,7 @@ export default class GameContainer extends React.Component {
         body: JSON.stringify({data})
       })
         .then( res => res.json())
-        .then( player => this.props.updatePlayer(player))
+        .then( player => this.props.updatePlayer(player) )
     };
   }
 
@@ -132,8 +137,12 @@ export default class GameContainer extends React.Component {
     });
   };
 
-  selectOrder = orderNumber => {
-    this.setState({ currentOrderNumber: orderNumber });
+  selectOrder = (event, orderNumber, intervalId) => {
+    console.log(intervalId)
+    this.setState({ 
+      currentOrderNumber: orderNumber,
+      currentCustomerTimerInterval: intervalId
+    });
   };
 
   reverseIncorrectBurger = () => {
@@ -145,6 +154,13 @@ export default class GameContainer extends React.Component {
   // componentWillUnmount = () => {
   //   this.clearTimeouts()
   // }
+
+  getNewOrderNumber = (customerId) => {
+    this.setState({
+      [`currentOrderNumber${customerId}`]: Math.floor(Math.random() * Object.keys(this.props.orders).length) + 1,
+      currentOrderNumber: null
+    })
+  }
 
   render() {
     // console.log(this.props.currentPlayer)
@@ -198,7 +214,7 @@ export default class GameContainer extends React.Component {
               </div>
 
               <div className="column">
-                {" "}
+                  {" "}
                 {/** rendering the current score, timer, and conditionally, an alert to show when someone built the wrong burger **/}
                 <h3>Current score: {this.state.currentScore}</h3>
                 <h3>Your high score: { 
@@ -231,21 +247,29 @@ export default class GameContainer extends React.Component {
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber1]}
                 orderNumber={this.state.currentOrderNumber1}
+                customerId={1}
+                getNewOrderNumber={this.getNewOrderNumber}
               />
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber2]}
                 orderNumber={this.state.currentOrderNumber2}
+                customerId={2}
+                getNewOrderNumber={this.getNewOrderNumber}
               />
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber3]}
                 orderNumber={this.state.currentOrderNumber3}
+                customerId={3}
+                getNewOrderNumber={this.getNewOrderNumber}
               />
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber4]}
                 orderNumber={this.state.currentOrderNumber4}
+                customerId={4}
+                getNewOrderNumber={this.getNewOrderNumber}
               />
             </div>
           </div>
