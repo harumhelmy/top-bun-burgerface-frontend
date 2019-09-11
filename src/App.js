@@ -9,7 +9,7 @@ import GameContainer from './Container/GameContainer'
 import { Orders } from './Orders'
 import ThunderDome from './ThunderDome'
 
-const playerUrl = 'http://localhost:3000/players'
+const playerUrl = 'http://localhost:3000/players/'
 
 class App extends React.Component {
 
@@ -31,12 +31,16 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    fetch(playerUrl)
-    .then(res => res.json())
-    .then(allPlayers => this.setState({
-      allPlayers,
+    this.setState({
       orders: Orders()
-    }))
+    })
+    // console.log('mounted')
+    // fetch(playerUrl)
+    // .then(res => res.json())
+    // .then(allPlayers => this.setState({
+    //   allPlayers,
+    //   orders: Orders()
+    // }))
   }
 
   startGame = () => {
@@ -47,16 +51,12 @@ class App extends React.Component {
 
   onLogin = (event) => {
     event.preventDefault()
-    const player = this.state.allPlayers.filter( player => 
-      player.name.toLowerCase() === this.state.loginName.toLowerCase())
 
-      player.length === 0 
-      ? 
-      console.log(player)
-      :
-      this.setState({
-        currentPlayer: player[0]
-      })
+    fetch(playerUrl+this.state.loginName)
+    .then(res => res.json())
+    .then(player => this.setState({
+      currentPlayer: player
+    }))    
   }
 
   logout = () =>{
@@ -70,6 +70,12 @@ class App extends React.Component {
     console.log("exit game")
     this.setState({
       gameStarted: false
+    })
+  }
+
+  updatePlayer = (player) => {
+    this.setState({
+      currentPlayer: player
     })
   }
 
@@ -88,7 +94,7 @@ class App extends React.Component {
               <Route exact path='/' component={ThunderDome} />
         </Router>
 
-        {this.state.gameStarted ? <GameContainer exitGame={this.exitGame} orders={this.state.orders}/> : null}
+        {this.state.gameStarted ? <GameContainer exitGame={this.exitGame} orders={this.state.orders} currentPlayer={this.state.currentPlayer} updatePlayer={this.updatePlayer}/> : null}
        
         {
           this.state.currentPlayer && !this.state.gameStarted ? <Welcome logout={this.logout} startGame={this.startGame}/>

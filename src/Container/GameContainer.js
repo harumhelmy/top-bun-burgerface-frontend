@@ -87,13 +87,32 @@ export default class GameContainer extends React.Component {
   };
 
   changeGameState = () => {
+    console.log(this.state.currentScore)
     this.setState({
       ...this.initialState,
       gameEnded: !this.state.gameEnded,
       modalState: !this.state.modalState,
       lastScore: this.state.currentScore
     });
-  };
+
+  
+    if (this.state.currentScore > this.props.currentPlayer.high_score) {
+      console.log(this.props.currentPlayer.id)
+      const data = {
+        high_score: this.state.currentScore 
+      } 
+
+      fetch(`http://localhost:3000/players/${this.props.currentPlayer.id}`, {
+        method: "PATCH",
+        headers: {
+          'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({data})
+      })
+        .then( res => res.json())
+        .then( player => this.props.updatePlayer(player))
+    };
+  }
 
   customerOrders = () => {
     return this.props.orders[
@@ -102,6 +121,7 @@ export default class GameContainer extends React.Component {
   };
 
   removeIngredient = () => {
+    console.log('attempting to remove')
     this.state.currentBurger.pop();
     this.state.currentBurger2.pop();
 
@@ -122,10 +142,12 @@ export default class GameContainer extends React.Component {
     }, 2000);
   };
 
-
-
+  // componentWillUnmount = () => {
+  //   this.clearTimeouts()
+  // }
 
   render() {
+    // console.log(this.props.currentPlayer)
     
     return (
       <Fragment>
@@ -147,7 +169,7 @@ export default class GameContainer extends React.Component {
                       .slice(0)
                       .reverse()
                       .map((ingr, index) => (
-                        <p>
+                        <p key={Math.floor(Math.random() * 1000000) + 1}>
                           <img
                             style={{
                               margin: "-45px",
@@ -159,7 +181,6 @@ export default class GameContainer extends React.Component {
                             width="50%"
                             alt=""
                             src={require(`../images/${ingr}.png`)}
-                            key={Math.floor(Math.random() * 1000000) + 1}
                           ></img>
                         </p>
                       ))
@@ -180,6 +201,12 @@ export default class GameContainer extends React.Component {
                 {" "}
                 {/** rendering the current score, timer, and conditionally, an alert to show when someone built the wrong burger **/}
                 <h3>Current score: {this.state.currentScore}</h3>
+                <h3>Your high score: { 
+                  this.state.currentScore > this.props.currentPlayer.high_score 
+                  ? this.state.currentScore
+                  : this.props.currentPlayer.high_score
+                  }
+                </h3>
                 <Timer changeGameState={this.changeGameState} />
                 {this.state.incorrectBurger ? (
                   <div>
@@ -233,14 +260,4 @@ export default class GameContainer extends React.Component {
       </Fragment>
     );
   }
-}
-
-{
-  /* <div> */
-}
-{
-  /* {this.props.orders[this.state.currentOrderNumber1].map( ingr =>  <div style={{display: 'flex', flexDirection: 'column'}} key={Math.floor(Math.random() * 1000000) + 1}>{ingr}</div> )} */
-}
-{
-  /* </div> */
 }

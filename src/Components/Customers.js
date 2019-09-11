@@ -1,18 +1,13 @@
-import React, {Fragment} from "react";
+import React from "react";
 
 
 
 
 export default class Customers extends React.Component {
-
-    
-    
-    
     
     render(){
   
-      
-        return(
+      return(
             <div style={{position: 'relative', display: "flex", flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center' }} onClick={() => this.props.selectOrder(this.props.orderNumber)} >
                 <div style={{position: 'relative', display: "flex", flexDirection: 'column', justifyContent: 'flex-end' }}>
            {this.props.order.slice(0).reverse().map( (ingr, index) => <p style={{position: 'relative', display: "flex", alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-end' }} key={Math.floor(Math.random() * 1000000) + 1}><img style={{marginTop: '-60px', zIndex: `-${index}`, position: 'relative'}} 
