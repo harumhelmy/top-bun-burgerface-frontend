@@ -51,7 +51,6 @@ export default class BurgerBuildContainer extends React.Component {
           </div>
           <br />
           <br />
-          <br />
           <button className="button" onClick={this.props.removeIngredient}>
             Remove last added ingredient
           </button>
