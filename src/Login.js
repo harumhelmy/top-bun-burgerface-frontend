@@ -3,13 +3,7 @@ import React from "react";
 const Login = props => {
   return (
      <div>
-                       <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+ 
        { !props.currentPlayer ?
       <form onSubmit={props.onLogin}>
         <h1><label>Login:</label></h1>

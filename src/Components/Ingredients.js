@@ -58,7 +58,7 @@ const Ingredients= (props) =>{
             </div>
           )
         }
-        <div>
+        <div style={{zIndex: '999'}}>
           <img alt="" src={require('../images/top_bun.png')} 
             onClick={()=>props.burgerSubmit()} />
         </div>

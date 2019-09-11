@@ -7,7 +7,7 @@ const Orders = () => {
     for(let i=1; i < 20; i++){
       let ordersArray = []
 
-      for (let i=0; i < 4; i++){
+      for (let i=0; i < 5; i++){
         ordersArray.push(Ingredients[Math.floor(Math.random() * Ingredients.length)])
       }
 

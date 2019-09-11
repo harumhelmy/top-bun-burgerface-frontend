@@ -56,7 +56,7 @@ export default class GameContainer extends React.Component {
         }
       }
 
-      if (results.length === 4) {
+      if (results.length === 5) {
         let update = this.state.currentScore;
         this.setState({ currentScore: update + 1 });
       } else {
@@ -152,7 +152,7 @@ export default class GameContainer extends React.Component {
     return (
       <Fragment>
         {this.state.gameEnded === false ? (
-          <div>
+          <div style={{height: '100vh'}}>
             <h1> 🍔 Top Bun 🍔 </h1>
 
             <Ingredients
@@ -162,7 +162,7 @@ export default class GameContainer extends React.Component {
 
             <div className="columns">
               <div className="column">
-                {" "}
+              
                 {/** rendering current order to be fulfilled **/}
                 {this.props.orders[this.state.currentOrderNumber]
                   ? this.props.orders[this.state.currentOrderNumber]
