@@ -11,13 +11,21 @@ export default class BurgerBuildContainer extends React.Component {
         <br />
 
         <div
+          
           style={{
-            height: "330px",
+            zIndex: "-100",
+            height: "730px",
             position: "relative",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "flex-end"
+            justifyContent: "flex-end",
+            
+            backgroundImage: `url(${require('../images/TomCruise.jpg')})`,
+            // require(`../images/${ingr}.png`)
+            // require(`../images/${ingr.name}.png`),
+            backgroundSize: '100% 100%'
+            
           }}
         >
           {this.props.burger.slice(0).reverse().map((ingredient, index) => (

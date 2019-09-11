@@ -22,12 +22,11 @@ export default class GameContainer extends React.Component {
       gameEnded: false,
       modalState: false,
       lastScore: 0,
-      currentOrderNumber1: 2,
-      currentOrderNumber2: 3,
-      currentOrderNumber3: 4,
-      currentOrderNumber4: 5,
-      incorrectBurger: false
-   };
+      currentOrderNumber1: Math.floor(Math.random() * 10) + 1,
+      currentOrderNumber2: Math.floor(Math.random() * 10) + 1,
+      currentOrderNumber3: Math.floor(Math.random() * 10) + 1,
+      currentOrderNumber4: Math.floor(Math.random() * 10) + 1
+    };
   }
 
   buildBurger = ingr => {
@@ -145,8 +144,8 @@ export default class GameContainer extends React.Component {
                               position: "relative",
                               backgroundSize: "contain"
                             }}
-                            height="65%"
-                            width="65%"
+                            height="50%"
+                            width="50%"
                             alt=""
                             src={require(`../images/${ingr}.png`)}
                             key={Math.floor(Math.random() * 1000000) + 1}
@@ -191,6 +190,7 @@ export default class GameContainer extends React.Component {
                 justifyContent: "flex-end"
               }}
             >
+              
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber1]}

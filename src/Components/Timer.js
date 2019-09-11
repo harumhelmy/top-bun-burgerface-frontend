@@ -5,7 +5,7 @@ export default class Timer extends React.Component {
   constructor(){
     super()
     this.state = {
-      gameTimer: 5
+      gameTimer: 30
     }
   }
   
