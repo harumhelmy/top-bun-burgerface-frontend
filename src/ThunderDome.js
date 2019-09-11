@@ -1,13 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+
+
 const welcomeToTheThunderDome = () =>{
     return(
         <div>
-
-            <h1>This is the welcome page to <strong>Top Bun: BURGERFACE</strong></h1>
+            <h1>Welcome to <strong>Top Bun: BurgerFace Edition</strong></h1>
             <div>
- 
-           <Link to='/login'> <button>Click here to Login</button> </Link>
+                <Link to='/login'> <button>Click here to login</button> </Link>
+            <br/>
+            <br/>
+            <br/>
+            <img src={require(`./images/welcome-page.png`)} />
            </div>
         </div>
     )

@@ -161,9 +161,26 @@ export default class GameContainer extends React.Component {
             />
 
             <div className="columns">
+
               <div className="column">
               
                 {/** rendering current order to be fulfilled **/}
+
+                {
+                  this.state.currentOrderNumber === null 
+                  ? <h3>Pick a burger to build from the four random orders at the bottom of the page.</h3>
+                  : <h3>Build this burger! Quick quick!</h3>
+                }
+
+                {this.state.incorrectBurger ? (
+                  <div>
+                    <h3 style={{backgroundColor: 'red'}}> Oop, that burger was incorrect!</h3>
+                    {this.reverseIncorrectBurger()}
+                  </div>
+                ) : null}
+                
+                <br/>
+
                 {this.props.orders[this.state.currentOrderNumber]
                   ? this.props.orders[this.state.currentOrderNumber]
                       .slice(0)
@@ -188,7 +205,6 @@ export default class GameContainer extends React.Component {
               </div>
 
               <div className="column is-three-fifths">
-                {" "}
                 {/** this is where the magic of ingredient stacking happens **/}
                 <BurgerBuildContainer
                   burger={this.state.currentBurger2}
@@ -198,22 +214,18 @@ export default class GameContainer extends React.Component {
               </div>
 
               <div className="column">
-                {" "}
                 {/** rendering the current score, timer, and conditionally, an alert to show when someone built the wrong burger **/}
                 <h3>Current score: {this.state.currentScore}</h3>
+
                 <h3>Your high score: { 
                   this.state.currentScore > this.props.currentPlayer.high_score 
                   ? this.state.currentScore
                   : this.props.currentPlayer.high_score
                   }
                 </h3>
+
                 <Timer changeGameState={this.changeGameState} />
-                {this.state.incorrectBurger ? (
-                  <div>
-                    <h3>Oop, you made the wrong burger!</h3>
-                    {this.reverseIncorrectBurger()}
-                  </div>
-                ) : null}
+               
               </div>
             </div>
 

@@ -94,7 +94,14 @@ class App extends React.Component {
               <Route exact path='/' component={ThunderDome} />
         </Router>
 
-        {this.state.gameStarted ? <GameContainer exitGame={this.exitGame} orders={this.state.orders} currentPlayer={this.state.currentPlayer} updatePlayer={this.updatePlayer}/> : null}
+        {
+          this.state.gameStarted 
+          ? <GameContainer exitGame={this.exitGame} 
+              orders={this.state.orders} 
+              currentPlayer={this.state.currentPlayer} 
+              updatePlayer={this.updatePlayer}/> 
+          : null
+        }
        
         {
           this.state.currentPlayer && !this.state.gameStarted ? <Welcome logout={this.logout} startGame={this.startGame}/>
