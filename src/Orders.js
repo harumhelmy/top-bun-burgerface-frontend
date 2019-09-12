@@ -4,7 +4,7 @@ const Orders = () => {
 
     let allOrders = {}
 
-    for(let i=1; i < 20; i++){
+    for(let i=1; i < 50; i++){
       let ordersArray = []
 
       for (let i=0; i < 5; i++){
