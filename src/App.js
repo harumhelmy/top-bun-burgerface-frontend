@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Login from './Login'
 import './App.css';
 // import '../node_modules/bulma/css/bulma.css'
 import './App.sass' // in lieu of importing everything, we're only importing what we want
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Welcome from './Welcome'
 import GameContainer from './Container/GameContainer'
 import { Orders } from './Orders'
@@ -34,13 +34,6 @@ class App extends React.Component {
     this.setState({
       orders: Orders()
     })
-    // console.log('mounted')
-    // fetch(playerUrl)
-    // .then(res => res.json())
-    // .then(allPlayers => this.setState({
-    //   allPlayers,
-    //   orders: Orders()
-    // }))
   }
 
   startGame = () => {
@@ -84,6 +77,19 @@ class App extends React.Component {
       <div className="App" >
         <Router>
           
+          
+          
+          {
+            this.state.gameStarted 
+            ?
+              <GameContainer 
+                exitGame={this.exitGame} 
+                orders={this.state.orders} 
+                currentPlayer={this.state.currentPlayer} 
+                updatePlayer={this.updatePlayer}
+              />
+            : 
+
             <Route exact path='/login' render={ () => <Login 
               loginName={this.state.loginName}
               getLoginName={this.getLoginName}
@@ -91,23 +97,18 @@ class App extends React.Component {
               currentPlayer={this.state.currentPlayer} />
               }
             />
-              <Route exact path='/' component={ThunderDome} />
+          }
+
+            <Route exact path='/' component={ThunderDome} />
+           
         </Router>
 
-        {
-          this.state.gameStarted 
-          ? <GameContainer exitGame={this.exitGame} 
-              orders={this.state.orders} 
-              currentPlayer={this.state.currentPlayer} 
-              updatePlayer={this.updatePlayer}/> 
-          : null
-        }
-       
         {
           this.state.currentPlayer && !this.state.gameStarted ? <Welcome logout={this.logout} startGame={this.startGame}/>
           : 
           null
         }
+        
       </div>
     );
   }

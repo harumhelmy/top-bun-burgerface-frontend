@@ -22,10 +22,10 @@ export default class GameContainer extends React.Component {
       gameEnded: false,
       modalState: false,
       lastScore: 0,
-      currentOrderNumber1: Math.floor(Math.random() * 10) + 1,
-      currentOrderNumber2: Math.floor(Math.random() * 10) + 1,
-      currentOrderNumber3: Math.floor(Math.random() * 10) + 1,
-      currentOrderNumber4: Math.floor(Math.random() * 10) + 1
+      currentOrderNumber1: Math.floor(Math.random() * 50) + 1,
+      currentOrderNumber2: Math.floor(Math.random() * 50) + 1,
+      currentOrderNumber3: Math.floor(Math.random() * 50) + 1,
+      currentOrderNumber4: Math.floor(Math.random() * 50) + 1
     };
   }
 
@@ -148,7 +148,7 @@ export default class GameContainer extends React.Component {
 
   render() {
     // console.log(this.props.currentPlayer)
-    
+
     return (
       <Fragment>
         {this.state.gameEnded === false ? (
