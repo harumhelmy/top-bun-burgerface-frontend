@@ -6,6 +6,7 @@ const welcomeToTheThunderDome = () =>{
     return(
         <div>
             <h1>Welcome to <strong>Top Bun: BurgerFace Edition</strong></h1>
+            <h3><strong>POWERED BY TRIDUX</strong></h3>
             <div>
                 <Link to='/login' style={{color: 'white'}}> <button>Click here to login</button> </Link>
             <br/>
@@ -13,6 +14,7 @@ const welcomeToTheThunderDome = () =>{
             <br/>
             <img src={require(`./images/welcome-page.png`)} />
            </div>
+           
         </div>
     )
 }
