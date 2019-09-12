@@ -5,7 +5,11 @@ export default class Timer extends React.Component {
   constructor(){
     super()
     this.state = {
+<<<<<<< HEAD
       gameTimer: 100  
+=======
+      gameTimer: 300
+>>>>>>> adding_characters
     }
   }
   

@@ -6,6 +6,9 @@ import Timer from "../Components/Timer";
 import EndGame from "../Components/EndGame";
 import Customers from "../Components/Customers";
 
+
+const characters = ['Bart', 'Bobby', 'Cookie', 'Fry', 'Homer', 'Kirby', 'Patrick', 'Kid', 'Tina', 'Tom', 'Val', 'Winnie']
+
 export default class GameContainer extends React.Component {
   constructor() {
     super();
@@ -25,7 +28,11 @@ export default class GameContainer extends React.Component {
       currentOrderNumber1: Math.floor(Math.random() * 10) + 1,
       currentOrderNumber2: Math.floor(Math.random() * 10) + 1,
       currentOrderNumber3: Math.floor(Math.random() * 10) + 1,
-      currentOrderNumber4: Math.floor(Math.random() * 10) + 1
+      currentOrderNumber4: Math.floor(Math.random() * 10) + 1,
+      currentPic1: characters[Math.floor(Math.random()*characters.length)],
+      currentPic2: characters[Math.floor(Math.random()*characters.length)],
+      currentPic3: characters[Math.floor(Math.random()*characters.length)],
+      currentPic4: characters[Math.floor(Math.random()*characters.length)]
     };
   }
 
@@ -77,7 +84,11 @@ export default class GameContainer extends React.Component {
           Math.floor(Math.random() * Object.keys(this.props.orders).length) + 1,
         currentOrderNumber4:
           Math.floor(Math.random() * Object.keys(this.props.orders).length) + 1,
-        clickCounter: 0
+        clickCounter: 0,
+        currentPic1: characters[Math.floor(Math.random()*characters.length)],
+        currentPic2: characters[Math.floor(Math.random()*characters.length)],
+        currentPic3: characters[Math.floor(Math.random()*characters.length)],
+        currentPic4: characters[Math.floor(Math.random()*characters.length)]
       });
     } else {
       alert(
@@ -236,28 +247,33 @@ export default class GameContainer extends React.Component {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "flex-end"
+                justifyContent: "center",
+               
               }}
             >
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber1]}
                 orderNumber={this.state.currentOrderNumber1}
+                currentPic={this.state.currentPic1}
               />
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber2]}
                 orderNumber={this.state.currentOrderNumber2}
+                currentPic={this.state.currentPic2}
               />
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber3]}
                 orderNumber={this.state.currentOrderNumber3}
+                currentPic={this.state.currentPic3}
               />
               <Customers
                 selectOrder={this.selectOrder}
                 order={this.props.orders[this.state.currentOrderNumber4]}
                 orderNumber={this.state.currentOrderNumber4}
+                currentPic={this.state.currentPic4}
               />
             </div>
           </div>

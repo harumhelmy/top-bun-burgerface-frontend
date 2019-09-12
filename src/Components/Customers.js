@@ -4,22 +4,23 @@ import React from "react";
 
 
 export default class Customers extends React.Component {
+
     
     render(){
   
       return(
-            <div style={{position: 'relative', display: "flex", flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center'}} 
-                onClick={() => this.props.selectOrder(this.props.orderNumber)} >
+            <div style={{position: 'relative', display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: 'flext-start'}} onClick={() => this.props.selectOrder(this.props.orderNumber)} >
+                <div style={{position: 'relative', display: "flex", flexDirection: 'column', justifyContent: 'center' }}>
 
                 <div style={{position: 'relative', display: "flex", flexDirection: 'column', justifyContent: 'flex-end' }}>
 
                         {this.props.order.slice(0).reverse().map( (ingr, index) => 
                             <p style={{position: 'relative', 
-                                    display: "flex", 
-                                    alignItems: 'flex-end', 
-                                    flexDirection: 'column', 
-                                    justifyContent: 'flex-end' }} 
-                                key={Math.floor(Math.random() * 1000000) + 1}>
+                            display: "flex", 
+                            alignItems: 'flex-end', 
+                            flexDirection: 'column', 
+                            justifyContent: 'flex-end' }} 
+                            key={Math.floor(Math.random() * 1000000) + 1}>
 
                                     <img style={{marginTop: '-80px', 
                                         marginBottom: '-30px',
@@ -32,11 +33,14 @@ export default class Customers extends React.Component {
                                     </img>
                             </p> 
                         )}
-
                 </div>
+                            <p>
+                        <img margin='50px' alt='' height="170px" width="190px"src={require(`../TopBunCharacters/${this.props.currentPic}.gif`)}/>
+                            </p>
+
                 
-                <img margin='-100px' alt='' height="20%" width="20%"src='https://thenypost.files.wordpress.com/2016/09/tv_simpsons_homer1-1a.jpg?quality=90&strip=all&strip=all'/>
             
+            </div>
             </div>
         )
     }
