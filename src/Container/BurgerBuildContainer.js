@@ -9,9 +9,7 @@ export default class BurgerBuildContainer extends React.Component {
         <br />
         <br />
         <br />
-
         <div
-          
           style={{
             height: "250px",
             position: "relative",

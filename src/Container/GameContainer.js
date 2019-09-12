@@ -37,14 +37,14 @@ export default class GameContainer extends React.Component {
   }
 
   buildBurger = ingr => {
-    if (this.state.clickCounter < 10) {
+    if (this.state.clickCounter < 6) {
       this.setState({
         currentBurger: [...this.state.currentBurger, ingr],
         currentBurger2: [...this.state.currentBurger, ingr],
         clickCounter: this.state.clickCounter + 1
       });
     } else {
-      alert("stahp");
+      alert("HAPPY BIRTHDAY CHINE!");
     }
   };
 
