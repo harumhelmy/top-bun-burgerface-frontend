@@ -8,6 +8,7 @@ import Welcome from './Welcome'
 import GameContainer from './Container/GameContainer'
 import { Orders } from './Orders'
 import ThunderDome from './ThunderDome'
+import Chine from './Chine'
 
 const playerUrl = 'http://localhost:3000/players/'
 
@@ -107,6 +108,8 @@ class App extends React.Component {
 
 
             <Route exact path='/' component={ThunderDome} />
+
+            <Route  path='/' component={Chine} />
 
            
         </Switch>
