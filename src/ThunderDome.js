@@ -7,7 +7,7 @@ const welcomeToTheThunderDome = () =>{
         <div>
             <h1>Welcome to <strong>Top Bun: BurgerFace Edition</strong></h1>
             <div>
-                <Link to='/login'> <button>Click here to login</button> </Link>
+                <Link to='/login' style={{color: 'white'}}> <button>Click here to login</button> </Link>
             <br/>
             <br/>
             <br/>
