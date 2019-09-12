@@ -3,7 +3,7 @@ import Login from './Login'
 import './App.css';
 // import '../node_modules/bulma/css/bulma.css'
 import './App.sass' // in lieu of importing everything, we're only importing what we want
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Welcome from './Welcome'
 import GameContainer from './Container/GameContainer'
 import { Orders } from './Orders'
@@ -20,7 +20,7 @@ class App extends React.Component {
       allPlayers: [],
       currentPlayer: '',
       gameStarted: false, 
-      orders: []
+      orders: Orders()
     }
   }
 
@@ -30,11 +30,12 @@ class App extends React.Component {
     })
   }
 
-  componentDidMount(){
-    this.setState({
-      orders: Orders()
-    })
-  }
+  // componentDidMount(){
+  //   console.log()
+  //   this.setState({
+  //     orders: Orders()
+  //   })
+  // }
 
   startGame = () => {
     this.setState({
@@ -75,39 +76,42 @@ class App extends React.Component {
   render(){
     return (
       <div className="App" >
-        <Router>
+        <Switch>
           
           
-          
-          {
-            this.state.gameStarted 
-            ?
-              <GameContainer 
-                exitGame={this.exitGame} 
-                orders={this.state.orders} 
-                currentPlayer={this.state.currentPlayer} 
-                updatePlayer={this.updatePlayer}
-              />
-            : 
 
-            <Route exact path='/login' render={ () => <Login 
+            <Route exact path='/login' render={ () => this.state.currentPlayer 
+            ? 
+            <Redirect to="/welcome" />
+            
+            :
+            <Login 
               loginName={this.state.loginName}
               getLoginName={this.getLoginName}
               onLogin={this.onLogin}
               currentPlayer={this.state.currentPlayer} />
-              }
+            }
             />
-          }
+          
+
+            <Route exact path='/game' render={ () => <GameContainer 
+                exitGame={this.exitGame} 
+                orders={this.state.orders} 
+                currentPlayer={this.state.currentPlayer} 
+                updatePlayer={this.updatePlayer}
+            /> }/>
+             
+
+              
+          <Route exact path='/welcome' render={ () => this.state.currentPlayer ? <Welcome logout={this.logout} startGame={this.startGame}/> : <Redirect to="/login" />} />
+
 
             <Route exact path='/' component={ThunderDome} />
-           
-        </Router>
 
-        {
-          this.state.currentPlayer && !this.state.gameStarted ? <Welcome logout={this.logout} startGame={this.startGame}/>
-          : 
-          null
-        }
+           
+        </Switch>
+
+      
         
       </div>
     );
